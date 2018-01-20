@@ -69,10 +69,10 @@ public class AddressbookUI extends UI {
          * to synchronously handle those events. Vaadin automatically sends only
          * the needed changes to the web page without loading a new page.
          */
-        newContact.addClickListener(e -> contactForm.edit(new Contact()));
+        newContact.addClickListener(contactForm.edit(new Contact()));
 
         filter.setInputPrompt("Filter contacts...");
-        filter.addTextChangeListener(e -> refreshContacts(e.getText()));
+        filter.addTextChangeListener(refreshContacts(e.getText()));
 
         contactList
                 .setContainerDataSource(new BeanItemContainer<>(Contact.class));
@@ -82,7 +82,7 @@ public class AddressbookUI extends UI {
         contactList.removeColumn("phone");
         contactList.setSelectionMode(Grid.SelectionMode.SINGLE);
         contactList.addSelectionListener(
-                e -> contactForm.edit((Contact) contactList.getSelectedRow()));
+                contactForm.edit((Contact) contactList.getSelectedRow()));
         refreshContacts();
     }
 
